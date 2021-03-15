@@ -5,6 +5,7 @@
     require_once dirname(__FILE__) . "/src/repository/todorepository.php";
 
     // vraag alle taken op
+    $arrTaken = ToDorepository::getAllTaken();
 
 ?>
 
@@ -62,10 +63,23 @@
             </tr>
             </thead>
             <tbody>
-            <?php
-
-            // noteer hier je code om de tabel op te vullen
             
+            <?php
+            // noteer hier je code om de tabel op te vullen
+            foreach($arrTaken as $taak) {
+            ?>
+
+            <tr>
+            <td><a href="update-taak-status-verwerk.php?id=1&afgewerkt=1">x</a></td>
+            <td><?php echo $taak->titel; ?></td>
+            <td>medium</td>
+            <td><?php echo $taak->getAfgewerktTekst(); ?></td>
+            <td><a href="delete.php?id=<?php echo $taak->id; ?>">delete</a> - <a href="update-taak.php?id=<?php echo $taak->id; ?>">edit</a></td>
+            </tr>
+
+
+            <?php
+            }
             ?>
             </tbody>
         </table>
